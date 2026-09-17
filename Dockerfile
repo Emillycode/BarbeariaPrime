@@ -34,12 +34,14 @@ WORKDIR /var/www/html
 COPY admin/    ./admin/
 COPY api/      ./api/
 COPY config/   ./config/
+COPY assets/   ./assets/
 COPY css/      ./css/
 COPY includes/ ./includes/
 COPY js/       ./js/
 COPY sql/      ./sql/
 COPY *.php     ./
 COPY *.html    ./
+COPY favicon.ico ./favicon.ico
 COPY .htaccess ./.htaccess
 
 # Garante que o Apache consiga ler os arquivos
