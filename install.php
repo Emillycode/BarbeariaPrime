@@ -30,6 +30,46 @@ function senhaForte(string $senha): bool
         && preg_match('/[0-9]/', $senha);
 }
 
+function garantirTabelasCriadas(PDO $pdo): void
+{
+    $existe = false;
+    try {
+        $stmt = $pdo->query("SHOW TABLES LIKE 'admins'");
+        $existe = ($stmt->fetch() !== false);
+    } catch (Exception $e) {
+        $existe = false;
+    }
+
+    if (!$existe) {
+        $schemaFile = __DIR__ . '/sql/schema.sql';
+        if (file_exists($schemaFile)) {
+            $sql = file_get_contents($schemaFile);
+            // Divide o script SQL em comandos individuais
+            $linhas = explode("\n", $sql);
+            $buffer = '';
+            foreach ($linhas as $linha) {
+                $linhaTrim = trim($linha);
+                if ($linhaTrim === '' || strpos($linhaTrim, '--') === 0 || strpos($linhaTrim, '/*') === 0) {
+                    continue;
+                }
+                $buffer .= $linha . "\n";
+                if (substr($linhaTrim, -1) === ';') {
+                    $comando = trim($buffer);
+                    $buffer = '';
+                    // Pula CREATE DATABASE e USE se já estiver conectado ao DB especificado
+                    if (!preg_match('/^\s*(CREATE DATABASE|USE)\b/i', $comando)) {
+                        try {
+                            $pdo->exec($comando);
+                        } catch (PDOException $e) {
+                            // Ignora se já existir
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = trim($_POST['nome']);
     $email = trim($_POST['email']);
@@ -42,6 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         try {
             $pdo = getConexao();
+            garantirTabelasCriadas($pdo);
+
             $hash = password_hash($senha, PASSWORD_BCRYPT);
 
             $stmt = $pdo->prepare('SELECT id FROM admins WHERE email = ?');
@@ -58,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mensagem = 'Conta de administrador criada com sucesso! Acesse /admin/login.php.';
             }
         } catch (PDOException $e) {
-            $erro = 'Erro: ' . $e->getMessage() . ' — confira se importou sql/schema.sql e configurou config/database.php.';
+            $erro = 'Erro: ' . $e->getMessage();
         }
     }
 }

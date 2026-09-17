@@ -24,10 +24,14 @@ function exigirLoginAdmin(): void
  */
 function tentarLoginAdmin(string $email, string $senha): array
 {
-    $pdo = getConexao();
-    $stmt = $pdo->prepare('SELECT * FROM admins WHERE email = ? AND ativo = 1');
-    $stmt->execute([$email]);
-    $admin = $stmt->fetch();
+    try {
+        $pdo = getConexao();
+        $stmt = $pdo->prepare('SELECT * FROM admins WHERE email = ? AND ativo = 1');
+        $stmt->execute([$email]);
+        $admin = $stmt->fetch();
+    } catch (PDOException $e) {
+        return ['sucesso' => false, 'erro' => 'Banco de dados ainda não inicializado. Acesse /install.php para configurar o acesso inicial.'];
+    }
 
     // Resposta genérica evita revelar se o e-mail existe ou não
     $erroGenerico = 'E-mail ou senha inválidos.';
