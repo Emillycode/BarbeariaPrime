@@ -8,6 +8,20 @@ $token = csrfToken();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Área do Cliente - Barbearia Prime</title>
+
+    <!-- Favicon (Ícone da URL e Aba) -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+    <link rel="alternate icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="assets/img/favicon.png">
+
+    <!-- Imagem de pré-visualização da URL -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Agendamento Online — Barbearia Prime">
+    <meta property="og:description" content="Agende seu horário online na Barbearia Prime. Escolha seu serviço, barbeiro, data e horário.">
+    <meta property="og:image" content="assets/img/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="assets/img/og-image.jpg">
+
     <link rel="stylesheet" href="css/style.css?v=<?= time() ?>">
     <script src="js/theme.js?v=<?= time() ?>"></script>
 </head>

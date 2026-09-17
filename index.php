@@ -9,6 +9,22 @@ $versao = time();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= htmlspecialchars(NOME_NEGOCIO) ?></title>
     <meta name="description" content="<?= htmlspecialchars(NOME_NEGOCIO) ?> — cortes, barba e cuidados masculinos. Agende seu horário online.">
+
+    <!-- Favicon (Ícone da URL e Aba) -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+    <link rel="alternate icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="assets/img/favicon.png">
+
+    <!-- Imagem de pré-visualização da URL (WhatsApp / Redes Sociais) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="<?= htmlspecialchars(NOME_NEGOCIO) ?> — Estilo, Qualidade e Tradição">
+    <meta property="og:description" content="Cortes modernos, barba e cuidados masculinos feitos por profissionais especializados. Agende seu horário online.">
+    <meta property="og:image" content="assets/img/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="assets/img/og-image.jpg">
+
     <link rel="stylesheet" href="css/style.css?v=<?= $versao ?>">
     <script src="js/theme.js?v=<?= $versao ?>"></script>
 </head>

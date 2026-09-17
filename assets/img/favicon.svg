@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#161616"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5d78e"/>
+      <stop offset="50%" stop-color="#c99b4a"/>
+      <stop offset="100%" stop-color="#916c27"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#c99b4a" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Fundo com cantos arredondados escuro -->
+  <rect width="128" height="128" rx="28" fill="url(#bgGrad)" stroke="url(#goldGrad)" stroke-width="3"/>
+
+  <!-- Círculo decorativo pontilhado / fino interno -->
+  <circle cx="64" cy="64" r="54" fill="none" stroke="url(#goldGrad)" stroke-width="1.2" stroke-opacity="0.4" stroke-dasharray="3,3"/>
+
+  <!-- Ícone de Tesoura e Navalha de Barbearia Premium -->
+  <g filter="url(#glow)">
+    <!-- Tesoura: Lâmina Esquerda -->
+    <path d="M 38 88 C 34 88 31 85 31 81 C 31 77 34 74 38 74 C 42 74 45 77 45 81 C 45 85 42 88 38 88 Z" fill="none" stroke="url(#goldGrad)" stroke-width="4"/>
+    <path d="M 43 78 L 86 34" stroke="url(#goldGrad)" stroke-width="4.5" stroke-linecap="round"/>
+
+    <!-- Tesoura: Lâmina Direita -->
+    <path d="M 90 88 C 86 88 83 85 83 81 C 83 77 86 74 90 74 C 94 74 97 77 97 81 C 97 85 94 88 90 88 Z" fill="none" stroke="url(#goldGrad)" stroke-width="4"/>
+    <path d="M 85 78 L 42 34" stroke="url(#goldGrad)" stroke-width="4.5" stroke-linecap="round"/>
+
+    <!-- Parafuso central da tesoura -->
+    <circle cx="64" cy="56" r="4.5" fill="url(#goldGrad)"/>
+    <circle cx="64" cy="56" r="1.5" fill="#111"/>
+
+    <!-- Coroa ou Estrela Prime superior -->
+    <path d="M 64 19 L 66.5 24 L 72 25 L 68 29 L 69 34.5 L 64 32 L 59 34.5 L 60 29 L 56 25 L 61.5 24 Z" fill="url(#goldGrad)"/>
+  </g>
+
+  <!-- Texto PRIME estilizado na base -->
+  <text x="64" y="112" text-anchor="middle" font-family="'Arial Black', Arial, sans-serif" font-size="11" font-weight="900" letter-spacing="3.5" fill="url(#goldGrad)">PRIME</text>
+</svg>

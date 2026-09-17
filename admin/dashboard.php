@@ -33,6 +33,8 @@ $statusClasse = [
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Painel Administrativo — <?= NOME_NEGOCIO ?></title>
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="alternate icon" type="image/png" href="../assets/img/favicon.png">
 <link rel="stylesheet" href="../css/style.css">
 <script src="../js/theme.js"></script>
 </head>
