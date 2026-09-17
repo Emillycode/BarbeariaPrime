@@ -47,6 +47,17 @@ function getConexao(): PDO
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             PDO::ATTR_EMULATE_PREPARES   => false,
         ];
+
+        // Se for conexão remota (ex: TiDB Cloud, Aiven, etc.), habilita SSL/TLS
+        if (DB_HOST !== '127.0.0.1' && DB_HOST !== 'localhost') {
+            if (defined('PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT')) {
+                $opcoes[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
+            }
+            if (defined('PDO::MYSQL_ATTR_SSL_CA') && file_exists('/etc/ssl/certs/ca-certificates.crt')) {
+                $opcoes[PDO::MYSQL_ATTR_SSL_CA] = '/etc/ssl/certs/ca-certificates.crt';
+            }
+        }
+
         try {
             $pdo = new PDO($dsn, DB_USER, DB_PASS, $opcoes);
         } catch (PDOException $e) {
