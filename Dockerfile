@@ -4,9 +4,11 @@
 # ============================================================
 FROM php:8.2-apache
 
-# Extensões PHP necessárias (conexão com MySQL)
-RUN docker-php-ext-install pdo pdo_mysql \
-    && a2enmod rewrite headers
+# Instala certificados SSL e extensões PHP necessárias (conexão com MySQL/TiDB)
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \
+    && docker-php-ext-install pdo pdo_mysql \
+    && a2enmod rewrite headers \
+    && rm -rf /var/lib/apt/lists/*
 
 # Configurações de PHP recomendadas para produção
 RUN { \
