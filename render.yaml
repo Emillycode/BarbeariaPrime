@@ -1,0 +1,25 @@
+# Blueprint opcional do Render. Você pode ignorar este arquivo e configurar
+# tudo manualmente pela interface do Render — ele só acelera o processo.
+#
+# O Render NÃO oferece banco de dados MySQL gerenciado (só PostgreSQL/Redis),
+# então este blueprint cria apenas o serviço web. Você precisa de um MySQL
+# externo (PlanetScale, Railway, Aiven etc. têm planos gratuitos) e configurar
+# a variável DATABASE_URL manualmente depois que o serviço for criado — veja
+# o README.md, seção "Deploy no Render".
+services:
+  - type: web
+    name: barbearia-prime
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        sync: false          # defina manualmente no painel do Render
+      - key: NOME_NEGOCIO
+        value: "Barbearia Prime"
+      - key: WHATSAPP_NUMERO
+        value: "5571997063936"
+      - key: WHATSAPP_MENSAGEM_PADRAO
+        value: "Olá, barbearia prime. Estou com dúvidas"
+      - key: ALLOW_INSTALL
+        value: "0"            # mude para "1" só temporariamente para criar o admin
